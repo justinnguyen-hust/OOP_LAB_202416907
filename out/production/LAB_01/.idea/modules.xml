@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/DisplayTriangleWithStars.iml" filepath="$PROJECT_DIR$/DisplayTriangleWithStars.iml" />
-=======
       <module fileurl="file://$PROJECT_DIR$/LAB_01.iml" filepath="$PROJECT_DIR$/LAB_01.iml" />
->>>>>>> 38d7f0c2d0a4b3504eb84c62c3291c428ed1d416
     </modules>
   </component>
 </project>
