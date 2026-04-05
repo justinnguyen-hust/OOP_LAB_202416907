@@ -1,0 +1,15 @@
+Question.txt
+Why getter and setter methods are evils?
+- Phá vỡ đóng gói, getter/setter làm lộ trạng thái nội bộ của object, biến private -> public
+- Class khác phụ thuộc vào cấu trúc dữ liệu bên trong, khi thay đổi kiểu dữ liệu -> code liên quan bị ảnh hươnrg
+- Lập trình viên thường lấy dữ liệu ra -> xử lý bên ngoài
+làm mất bản chất OOP -> biến thành kiểu lập trình thủ tục
+
+When should accessors be used?
+- Hiển thị dữ liệu, không chứa  logic
+- Các class chỉ dùng để vận chuyển dữ liệu giữa các tầng (layer) của hệ thống, không chứa logic nghiệp vụ.
+- Khi sử dụng các thư viện yêu cầu chuẩn Java Beans (như Hibernate, Spring, Jackson để convert JSON).
+
+Q2: Về 2 constructor cùng kiểu tham số
+- Không được, Java sẽ báo lỗi nếu 2 constructor cùng kiểu tham số
+- Vì java phân biệt constructor bằng: số lượng tham số, kiểu tham số, chứ không phân biệt bằng tên biến
