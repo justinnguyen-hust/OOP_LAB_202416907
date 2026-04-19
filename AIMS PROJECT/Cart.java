@@ -10,7 +10,7 @@ public class Cart {
         }
         itemsOrdered[qtyOrdered] = disc;
         qtyOrdered++;
-        System.out.println("The disc has been added.");
+        System.out.println("The disc " + disc.getTitle() + "has been added.");
         if(qtyOrdered == MAX_NUMBERS_ORDERED) System.out.println("The cart is full.");
     }
 
@@ -21,6 +21,10 @@ public class Cart {
 
     public void addDigitalVideoDisc(DigitalVideoDisc[] discList) {
         for (DigitalVideoDisc disc : discList) {
+            if (qtyOrdered >= MAX_NUMBERS_ORDERED) {
+                System.out.println("Cart is full. Stop adding.");
+                break;
+            }
             addDigitalVideoDisc(disc);
         }
     }
