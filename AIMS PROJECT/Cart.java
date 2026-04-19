@@ -62,4 +62,20 @@ public class Cart {
         System.out.printf("Total cost: %.2f\n", this.totalCost());
         System.out.println("*****************************************************");
     }
+
+    public void searchByTitle(String title){
+        boolean isFound = false;
+
+        for(int i = 0; i < qtyOrdered; i++){
+            if(itemsOrdered[i].isMatch(title)){
+                System.out.println(itemsOrdered[i]);
+                isFound = true;
+            }
+        }
+        if(!isFound){
+            System.out.println("Not found");
+        }
+    }
+
+
 }

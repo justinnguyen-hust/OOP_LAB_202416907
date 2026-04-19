@@ -47,6 +47,12 @@ public class DigitalVideoDisc {
         this.length = length;
     }
     public String toString(){
-        return String.format("DVD - %s - %s - %s - %d: %f$", title, category, director, length, cost);
+        return String.format("DVD - %s - %s - %s - %d: %.2f$", title, category, director, length, cost);
+    }
+
+    //Ham isMatch
+    public boolean isMatch(String title) {
+        if (title == null) return false;
+        return this.title.equalsIgnoreCase(title);
     }
 }
