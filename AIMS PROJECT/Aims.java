@@ -17,7 +17,7 @@ public class Aims {
         anOrder.printList();
         anOrder.searchByTitle("Star wars");
         anOrder.searchByTitle("Khanh Duy");
-        anOrder.searchByID(1);
-        anOrder.searchByID(4);
+        anOrder.searchById(1);
+        anOrder.searchById(4);
     }
 }
