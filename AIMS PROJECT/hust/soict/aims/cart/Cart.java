@@ -1,4 +1,6 @@
-import java.sql.SQLOutput;
+package hust.soict.aims.cart;
+
+import hust.soict.aims.disc.DigitalVideoDisc;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
@@ -24,7 +26,7 @@ public class Cart {
     public void addDigitalVideoDisc(DigitalVideoDisc[] discList) {
         for (DigitalVideoDisc disc : discList) {
             if (qtyOrdered >= MAX_NUMBERS_ORDERED) {
-                System.out.println("Cart is full. Stop adding.");
+                System.out.println("hust.soict.aims.cart.Cart is full. Stop adding.");
                 break;
             }
             addDigitalVideoDisc(disc);

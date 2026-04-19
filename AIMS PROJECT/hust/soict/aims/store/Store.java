@@ -1,3 +1,7 @@
+package hust.soict.aims.store;
+
+import hust.soict.aims.disc.DigitalVideoDisc;
+
 public class Store {
     public static final int MAX_NUMBERS_STORED = 1000;
     DigitalVideoDisc[] itemsInStore = new DigitalVideoDisc[MAX_NUMBERS_STORED];
@@ -23,7 +27,7 @@ public class Store {
     public void addDVD(DigitalVideoDisc[] discList){
         for(DigitalVideoDisc disc : discList){
             if (qtyStore >= MAX_NUMBERS_STORED){
-                System.out.println("Store is full, Stop adding");
+                System.out.println("hust.soict.aims.store.Store is full, Stop adding");
                 break;
             }
             addDVD(disc);

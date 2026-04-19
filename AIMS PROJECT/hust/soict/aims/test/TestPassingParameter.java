@@ -1,3 +1,7 @@
+package hust.soict.aims.test;
+
+import hust.soict.aims.disc.DigitalVideoDisc;
+
 public class TestPassingParameter {
     public static void main(String[] args) {
         //TODO Auto_generated method stub
