@@ -77,5 +77,18 @@ public class Cart {
         }
     }
 
+    public void searchByID(int id){
+        boolean isFound = false;
+        for(int i = 0; i < qtyOrdered; i++){
+            if(itemsOrdered[i].getId() == id){
+                System.out.println(itemsOrdered[i]);
+                isFound = true;
+            }
+        }
+        if(!isFound){
+            System.out.println("Not found.");
+        }
+    }
+
 
 }
