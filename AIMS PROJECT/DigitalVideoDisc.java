@@ -46,4 +46,7 @@ public class DigitalVideoDisc {
         this(title, category, director, cost);
         this.length = length;
     }
+    public String toString(){
+        return String.format("DVD - %s - %s - %s - %d: %f$", title, category, director, length, cost);
+    }
 }

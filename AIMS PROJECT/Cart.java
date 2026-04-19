@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
     private DigitalVideoDisc[] itemsOrdered = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
@@ -10,7 +12,7 @@ public class Cart {
         }
         itemsOrdered[qtyOrdered] = disc;
         qtyOrdered++;
-        System.out.println("The disc " + disc.getTitle() + "has been added.");
+        System.out.println("The disc " + disc.getTitle() + " has been added.");
         if(qtyOrdered == MAX_NUMBERS_ORDERED) System.out.println("The cart is full.");
     }
 
@@ -49,5 +51,15 @@ public class Cart {
             total += itemsOrdered[i].getCost();
         }
         return total;
+    }
+
+    public void printList(){
+        System.out.println("****************************CART*************************");
+        System.out.println("Ordered Items:");
+        for(int i = 0; i < qtyOrdered; i++){
+            System.out.printf("%d. %s\n", i+1, itemsOrdered[i].toString());
+        }
+        System.out.printf("Total cost: %.2f\n", this.totalCost());
+        System.out.println("*****************************************************");
     }
 }
