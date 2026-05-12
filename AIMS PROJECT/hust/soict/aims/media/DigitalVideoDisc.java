@@ -28,7 +28,7 @@ public class DigitalVideoDisc extends Disc {
         super(++nbDigitalVideoDiscs, title, category, cost, length, director);
     }
     public String toString(){
-        return String.format("DVD - %s - %s - %s - %d: %.2f$", getTitle(), getCategory(), director, length, getCost());
+        return String.format("DVD - %s - %s - %s - %d: %.2f$", getTitle(), getCategory(), getDirector(), getLength(), getCost());
     }
 
     //Ham isMatch
