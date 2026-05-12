@@ -1,6 +1,6 @@
 package hust.soict.aims.media;
 
-public class DigitalVideoDisc extends Media {
+public class DigitalVideoDisc extends Disc {
     private String director;
     private int length;
 
@@ -16,19 +16,16 @@ public class DigitalVideoDisc extends Media {
 
 
     public DigitalVideoDisc(String title){
-        super(++nbDigitalVideoDiscs, title, "", 0);
+        super(++nbDigitalVideoDiscs, title, "", 0, 0, "");
     }
     public DigitalVideoDisc(String title, String category, float cost){
-        super(++nbDigitalVideoDiscs, title, category, cost);
+        super(++nbDigitalVideoDiscs, title, category, cost, 0, "");
     }
     public DigitalVideoDisc(String title, String category, String director, float cost){
-        super(++nbDigitalVideoDiscs, title, category, cost);
-        this.director = director;
+        super(++nbDigitalVideoDiscs, title, category, cost, 0, director);
     }
     public DigitalVideoDisc(String title, String category, String director, int length, float cost){
-        super(++nbDigitalVideoDiscs, title, category, cost);
-        this.director = director;
-        this.length = length;
+        super(++nbDigitalVideoDiscs, title, category, cost, length, director);
     }
     public String toString(){
         return String.format("DVD - %s - %s - %s - %d: %.2f$", getTitle(), getCategory(), director, length, getCost());
