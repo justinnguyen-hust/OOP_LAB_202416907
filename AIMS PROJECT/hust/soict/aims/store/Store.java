@@ -1,6 +1,6 @@
 package hust.soict.aims.store;
 
-import hust.soict.aims.disc.DigitalVideoDisc;
+import hust.soict.aims.media.DigitalVideoDisc;
 
 public class Store {
     public static final int MAX_NUMBERS_STORED = 1000;

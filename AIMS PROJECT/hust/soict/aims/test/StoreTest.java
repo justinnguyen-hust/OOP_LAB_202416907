@@ -1,6 +1,6 @@
 package hust.soict.aims.test;
 
-import hust.soict.aims.disc.DigitalVideoDisc;
+import hust.soict.aims.media.DigitalVideoDisc;
 import hust.soict.aims.store.Store;
 
 public class StoreTest {
