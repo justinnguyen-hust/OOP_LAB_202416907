@@ -3,15 +3,6 @@ package hust.soict.aims.media;
 public class DigitalVideoDisc extends Disc {
     private static int nbDigitalVideoDiscs = 0;
 
-
-    public String getDirector(){
-        return director;
-    }
-    public int getLength(){
-        return length;
-    }
-
-
     public DigitalVideoDisc(String title){
         super(++nbDigitalVideoDiscs, title, "", 0, 0, "");
     }
