@@ -2,6 +2,7 @@ package hust.soict.aims.cart;
 
 import hust.soict.aims.media.DigitalVideoDisc;
 import hust.soict.aims.media.Media;
+import java.util.Collections;
 
 import java.util.ArrayList;
 
@@ -79,5 +80,29 @@ public class Cart {
         if(!isFound){
             System.out.println("Not found.");
         }
+    }
+
+    public void sortByTitleCost() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+        System.out.println("Đã sắp xếp giỏ hàng theo Tiêu đề -> Giá.");
+    }
+
+    public void sortByCostTitle() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+        System.out.println("Đã sắp xếp giỏ hàng theo Giá -> Tiêu đề.");
+    }
+    // Hàm tìm kiếm và TRẢ VỀ Media trong giỏ hàng (để dùng cho chức năng Remove và Play trong cart)
+    public Media searchMedia(String title) {
+        for (Media media : itemsOrdered) {
+            if (media.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                return media;
+            }
+        }
+        return null;
+    }
+
+    // Hàm dọn dẹp giỏ hàng khi người dùng chọn "Place order"
+    public void emptyCart() {
+        itemsOrdered.clear();
     }
 }

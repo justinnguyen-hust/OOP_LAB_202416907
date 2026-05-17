@@ -1,0 +1,5 @@
+- Java luôn luôn là pass-by-value (truyền tham trị). Không pass-by-reference (Truyền tham chiếu)
+- After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain? 
+=>Java là ngôn ngữ truyền tham trị nên hàm swap chỉ hoán đổi bản sao của các tham chiếu. Vì vậy, hai đối tượng ban đầu không bị thay đổi và tiêu đề của chúng vẫn giữ nguyên.
+- After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed? 
+=> Vì Java truyền bản sao của reference, nên tham số jungleDVD vẫn trỏ tới cùng một đối tượng như bên ngoài. Khi hàm changeTitle gọi setTitle trên đối tượng đó, nó thay đổi trực tiếp nội dung object, nên title của jungleDVD bị đổi.

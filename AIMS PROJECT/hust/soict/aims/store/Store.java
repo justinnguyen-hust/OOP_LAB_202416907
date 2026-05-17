@@ -51,4 +51,22 @@ public class Store {
         System.out.println("The disc is not in the store.");
         }
     }
+    // Hàm in ra toàn bộ sản phẩm trong cửa hàng
+    public void printStore() {
+        System.out.println("***********************STORE***********************");
+        for (int i = 0; i < itemsInStore.size(); i++) {
+            System.out.printf("%d. %s\n", i + 1, itemsInStore.get(i).toString());
+        }
+        System.out.println("***************************************************");
+    }
+
+    // Hàm tìm kiếm và TRẢ VỀ đối tượng Media theo tên (thay vì chỉ in ra màn hình)
+    public Media searchByTitle(String title) {
+        for (Media media : itemsInStore) {
+            if (media.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                return media;
+            }
+        }
+        return null; // Không tìm thấy
+    }
 }

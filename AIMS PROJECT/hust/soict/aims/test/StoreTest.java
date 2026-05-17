@@ -1,6 +1,8 @@
 package hust.soict.aims.test;
 
 import hust.soict.aims.media.DigitalVideoDisc;
+import hust.soict.aims.media.Media; // Import thêm Media
+// import hust.soict.aims.media.CompactDisc; // Thử bỏ comment dòng này nếu bạn muốn test thêm CD
 import hust.soict.aims.store.Store;
 
 public class StoreTest {
@@ -11,22 +13,20 @@ public class StoreTest {
         DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 124, 24.95f);
         DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", "John Musker", 90, 18.99f);
 
-        store.addDVD(dvd1);
-        store.addDVD(dvd2);
+        store.addMedia(dvd1);
+        store.addMedia(dvd2);
 
-        DigitalVideoDisc[] dvdList = {dvd3};
-        store.addDVD(dvdList);
+        Media[] mediaList = {dvd3};
+        store.addMedia(mediaList);
 
-        store.removeDVD(dvd2);
+        store.removeMedia(dvd2);
 
-        //Test loi
-        store.removeDVD(dvd2);
+        store.removeMedia(dvd2);
 
-        // Test thêm nhiều phần tử
         DigitalVideoDisc dvd4 = new DigitalVideoDisc("Avengers");
         DigitalVideoDisc dvd5 = new DigitalVideoDisc("Batman");
 
-        DigitalVideoDisc[] moreDVDs = {dvd4, dvd5};
-        store.addDVD(moreDVDs);
+        Media[] moreMedia = {dvd4, dvd5};
+        store.addMedia(moreMedia);
     }
 }
