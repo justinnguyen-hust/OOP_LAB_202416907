@@ -1,0 +1,13 @@
+1. If the passing object is not an instance of Media, what happens?
+--> Nếu cố tình ép kiểu một đối tượng không phải là Media sang kiểu Media, Java sẽ báo lỗi ClassCastException lúc chạy chương trình và làm sập ứng dụng.
+Đó là lý do vì sao bắt buộc phải có câu lệnh if (!(obj instanceof Media)) (hoặc Track) để kiểm tra an toàn. Nếu nó không đúng kiểu, hàm equals() sẽ đơn giản là trả về false mà không gây ra lỗi sập chương trình.
+2. Suppose we are taking this Comparable interface approach. What class should implement the Comparable interface?
+--> Lớp abstract Media nên implement interface Comparable<Media>. Vì nó là lớp cha chung của tất cả các sản phẩm trong giỏ hàng, việc implement ở đây giúp mọi đối tượng kế thừa từ nó đều có khả năng tự so sánh với nhau.
+3. Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+--> Không. Interface Comparable chỉ cho phép định nghĩa một "trật tự sắp xếp tự nhiên" (natural ordering) duy nhất cho mỗi lớp, vì chỉ có thể ghi đè phương thức compareTo() một lần. Để có nhiều quy tắc sắp xếp khác nhau trên cùng một đối tượng, bắt buộc phải dùng Comparator.
+4. Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+Ghi đè lại phương thức compareTo() bên trong riêng lớp DigitalVideoDisc, logic sau:
++ Đầu tiên gọi so sánh tiêu đề bằng cách tận dụng mã của lớp cha. 
++ Nếu tiêu đề giống nhau, sử dụng instanceof để kiểm tra đối tượng so sánh có phải là DigitalVideoDisc không.
++ Nếu đúng, ép kiểu sang DigitalVideoDisc và tiến hành so sánh length của hai đĩa theo thứ tự giảm dần.
++ Nếu length bằng nhau, tiếp tục so sánh cost.
