@@ -1,56 +1,41 @@
 package hust.soict.aims.cart;
 
 import hust.soict.aims.media.DigitalVideoDisc;
+import hust.soict.aims.media.Media;
+
+import java.util.ArrayList;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
-    private DigitalVideoDisc[] itemsOrdered = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
-    private int qtyOrdered = 0;
+    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
 
-    public void addDigitalVideoDisc(DigitalVideoDisc disc){
-        if(qtyOrdered >= MAX_NUMBERS_ORDERED){
-            System.out.println("The cart is already full.");
-            return;
+    public void addMedia(Media media){
+        if (itemsOrdered.size() >= MAX_NUMBERS_ORDERED) {
+            System.out.println("Gio hang da day, khong the them san pham");
         }
-        itemsOrdered[qtyOrdered] = disc;
-        qtyOrdered++;
-        System.out.println("The disc " + disc.getTitle() + " has been added.");
-        if(qtyOrdered == MAX_NUMBERS_ORDERED) System.out.println("The cart is full.");
-    }
-
-    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2){
-        addDigitalVideoDisc(dvd1);
-        addDigitalVideoDisc((dvd2));
-    }
-
-    public void addDigitalVideoDisc(DigitalVideoDisc[] discList) {
-        for (DigitalVideoDisc disc : discList) {
-            if (qtyOrdered >= MAX_NUMBERS_ORDERED) {
-                System.out.println("hust.soict.aims.cart.Cart is full. Stop adding.");
-                break;
-            }
-            addDigitalVideoDisc(disc);
+        else if(itemsOrdered.contains(media)){
+            System.out.println("San pham da co trong gio hang.");
+        }
+        else{
+            itemsOrdered.add(media);
+            System.out.println("Da them san pham vao gio hang.");
         }
     }
 
-    public void removeDigitalVideoDisc(DigitalVideoDisc disc){
-        for(int i = 0; i < qtyOrdered; i++){
-            if(itemsOrdered[i].equals(disc)){
-                for(int j = i+1; j < qtyOrdered; j++){
-                    itemsOrdered[j-1] = itemsOrdered[j];
-                }
-                qtyOrdered--;
-                itemsOrdered[qtyOrdered] = null;
-                System.out.println("The disc has been removed.");
-                return;
-            }
+    public void removeMedia(Media media){
+        if(itemsOrdered.contains(media)){
+            itemsOrdered.remove(media);
+            System.out.println("Da xoa san pham khoi gio hang.");
         }
-        System.out.println("The disc is not in the cart.");
+        else{
+            System.out.println("San pham khong ton tai trong gio hang.");
+        }
     }
+
     public float totalCost(){
         float total = 0;
-        for(int i = 0; i < qtyOrdered; i++){
-            total += itemsOrdered[i].getCost();
+        for(Media media : itemsOrdered){
+            total += media.getCost();
         }
         return total;
     }
@@ -58,8 +43,8 @@ public class Cart {
     public void printList(){
         System.out.println("****************************CART*************************");
         System.out.println("Ordered Items:");
-        for(int i = 0; i < qtyOrdered; i++){
-            System.out.printf("%d. %s\n", i+1, itemsOrdered[i].toString());
+        for(int i = 0; i < itemsOrdered.size(); i++){
+            System.out.printf("%d. %s\n", i+1, itemsOrdered.get(i).toString());
         }
         System.out.printf("Total cost: %.2f\n", this.totalCost());
         System.out.println("*****************************************************");
@@ -68,9 +53,11 @@ public class Cart {
     public void searchByTitle(String title){
         boolean isFound = false;
 
-        for(int i = 0; i < qtyOrdered; i++){
-            if(itemsOrdered[i].isMatch(title)){
-                System.out.println(itemsOrdered[i]);
+        // Dùng vòng lặp for-each cho gọn
+        for(Media media : itemsOrdered){
+            // Chuyển cả 2 chuỗi về chữ thường để tìm kiếm chính xác hơn
+            if(media.getTitle().toLowerCase().contains(title.toLowerCase())){
+                System.out.println(media.toString()); // Hoặc in ra thông tin bạn muốn
                 isFound = true;
             }
         }
@@ -81,17 +68,16 @@ public class Cart {
 
     public void searchById(int id){
         boolean isFound = false;
-        for(int i = 0; i < qtyOrdered; i++){
-            if(itemsOrdered[i].getId() == id){
-                System.out.println(itemsOrdered[i]);
+
+        for(Media media : itemsOrdered){
+            if(media.getId() == id){
+                System.out.println(media.toString());
                 isFound = true;
-                return;
+                return; // Nếu ID là duy nhất thì tìm thấy 1 cái là thoát luôn
             }
         }
         if(!isFound){
             System.out.println("Not found.");
         }
     }
-
-
 }
