@@ -62,13 +62,13 @@
                </VBox.margin>
                <children>
                   <Label text="Filter" />
-                  <TextField />
-                  <RadioButton mnemonicParsing="false" selected="true" text="By ID">
+                  <TextField fx:id="tfFilter" />
+                  <RadioButton fx:id="radioBtnFilterId" mnemonicParsing="false" selected="true" text="By ID">
                      <toggleGroup>
                         <ToggleGroup fx:id="filterCategory" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="By Title" toggleGroup="$filterCategory" />
+                  <RadioButton fx:id="radioBtnFilterTitle" mnemonicParsing="false" text="By Title" toggleGroup="$filterCategory" />
                </children>
             </HBox>
             <TableView fx:id="tblMedia">
@@ -83,8 +83,8 @@
             </TableView>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button fx:id="btnPlay" mnemonicParsing="false" text="Play" />
-                  <Button fx:id="btnRemove" mnemonicParsing="false" text="Remove" />
+                <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#btnPlayPressed" text="Play" />
+                  <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#btnRemovePressed" text="Remove" />
               </buttons>
             </ButtonBar>
          </children>
@@ -103,14 +103,14 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label text="0$" textFill="AQUA">
+                  <Label fx:id="lblCost" text="0$" textFill="AQUA">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Place Order" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#btnPlaceOrderPressed" style="-fx-background-color: red;" text="Place Order" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>

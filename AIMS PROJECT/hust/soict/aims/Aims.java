@@ -7,6 +7,7 @@ import hust.soict.aims.media.DigitalVideoDisc;
 import hust.soict.aims.media.Media;
 import hust.soict.aims.media.Playable;
 import hust.soict.aims.store.Store;
+import hust.soict.aims.exception.PlayerException;
 
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ public class Aims {
 
     public static void main(String[] args) {
         // Khởi tạo một số dữ liệu mẫu cho Store
-        store.addMedia(new DigitalVideoDisc("The Lion King", "Animation","Roger Allers", 87, 19.95f ));
+        store.addMedia(new DigitalVideoDisc("The Lion King", "Animation","Roger Allers", 0, 19.95f ));
         store.addMedia(new DigitalVideoDisc("Star Wars", "Sci-Fi", "George Lucas", 124, 24.95f));
         store.addMedia(new CompactDisc(1,"Greatest Hits", "Music", 15.99f, "Various Artists"));
         store.addMedia(new Book(2, "Effective Java", "Education", 45.00f));
@@ -99,7 +100,11 @@ public class Aims {
                     Media mediaPlay = store.searchByTitle(titlePlay);
                     if (mediaPlay != null) {
                         if (mediaPlay instanceof Playable) {
-                            ((Playable) mediaPlay).play();
+                            try {
+                                ((Playable) mediaPlay).play();
+                            } catch (PlayerException e) {
+                                System.err.println("Lỗi khi phát Media: " + e.getMessage());
+                            }
                         } else {
                             System.out.println("Sản phẩm này không hỗ trợ Play (Ví dụ: Sách).");
                         }
@@ -150,7 +155,11 @@ public class Aims {
                     break;
                 case 2:
                     if (media instanceof Playable) {
-                        ((Playable) media).play();
+                        try {
+                            ((Playable) media).play();
+                        } catch (PlayerException e) {
+                            System.err.println("Lỗi khi phát Media: " + e.getMessage());
+                        }
                     } else {
                         System.out.println("Sản phẩm này không hỗ trợ Play.");
                     }
@@ -211,7 +220,11 @@ public class Aims {
                     Media mediaCartPlay = cart.searchMedia(titleCartPlay);
                     if (mediaCartPlay != null) {
                         if (mediaCartPlay instanceof Playable) {
-                            ((Playable) mediaCartPlay).play();
+                            try {
+                                ((Playable) mediaCartPlay).play();
+                            } catch (PlayerException e) {
+                                System.err.println("Lỗi khi phát Media: " + e.getMessage());
+                            }
                         } else {
                             System.out.println("Sản phẩm này không hỗ trợ Play.");
                         }
