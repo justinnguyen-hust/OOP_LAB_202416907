@@ -3,12 +3,14 @@ package hust.soict.aims.cart;
 import hust.soict.aims.media.DigitalVideoDisc;
 import hust.soict.aims.media.Media;
 import java.util.Collections;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
-    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+    private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
     public void addMedia(Media media){
         if (itemsOrdered.size() >= MAX_NUMBERS_ORDERED) {
@@ -104,5 +106,9 @@ public class Cart {
     // Hàm dọn dẹp giỏ hàng khi người dùng chọn "Place order"
     public void emptyCart() {
         itemsOrdered.clear();
+    }
+
+    public ObservableList<Media> getItemsOrdered() {
+        return itemsOrdered;
     }
 }

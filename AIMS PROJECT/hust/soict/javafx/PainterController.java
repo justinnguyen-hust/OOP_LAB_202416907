@@ -2,6 +2,7 @@ package hust.soict.javafx; // Nhớ đổi tên package nếu bạn dùng nhóm 
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -9,24 +10,46 @@ import javafx.scene.shape.Circle;
 
 public class PainterController {
 
-    // Nối với fx:id "drawingAreaPane" của Pane trong Scene Builder
     @FXML
     private Pane drawingAreaPane;
 
-    // Hàm xử lý sự kiện khi bấm nút Clear
+    // Khai báo thêm 2 RadioButton từ FXML
+    @FXML
+    private RadioButton penRadio;
+
+    @FXML
+    private RadioButton eraserRadio;
+
     @FXML
     void clearButtonPressed(ActionEvent event) {
-        // Xóa toàn bộ các đối tượng hình học đang có trên bảng vẽ
         drawingAreaPane.getChildren().clear();
     }
 
-    // Hàm xử lý sự kiện khi di chuột (kéo lê) trên bảng vẽ
     @FXML
     void drawingAreaMouseDragged(MouseEvent event) {
-        // Lấy tọa độ X, Y của chuột, tạo một hình tròn nhỏ (bán kính 4) màu đen
-        Circle newCircle = new Circle(event.getX(), event.getY(), 4, Color.BLACK);
+        if (eraserRadio.isSelected()) {
+            // Chế độ CỤC TẨY: Xóa các điểm vẽ nằm gần con trỏ chuột
+            double eraserRadius = 10.0; // Bán kính của vùng tẩy (càng to tẩy càng rộng)
 
-        // Thêm hình tròn đó vào danh sách các thành phần con của Pane
-        drawingAreaPane.getChildren().add(newCircle);
+            drawingAreaPane.getChildren().removeIf(node -> {
+                if (node instanceof Circle) {
+                    Circle circle = (Circle) node;
+                    // Công thức tính khoảng cách từ vị trí chuột hiện tại đến tâm của hình tròn nét vẽ
+                    double distance = Math.sqrt(
+                            Math.pow(circle.getCenterX() - event.getX(), 2) +
+                                    Math.pow(circle.getCenterY() - event.getY(), 2)
+                    );
+
+                    // Nếu khoảng cách nhỏ hơn bán kính tẩy, ném True để removeIf xóa Node này đi
+                    return distance <= eraserRadius;
+                }
+                return false;
+            });
+
+        } else {
+            // Chế độ CÂY BÚT: Vẽ bình thường
+            Circle newCircle = new Circle(event.getX(), event.getY(), 4, Color.BLACK);
+            drawingAreaPane.getChildren().add(newCircle);
+        }
     }
 }
