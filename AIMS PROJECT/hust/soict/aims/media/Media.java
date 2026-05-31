@@ -47,15 +47,25 @@ public abstract class Media {
 
     @Override
     public boolean equals(Object obj) {
+        // Kiểm tra xem có trỏ cùng vào một ô nhớ không
         if (this == obj) {
             return true;
         }
 
-        if (obj == null || !(obj instanceof Media)) {
+        // Sử dụng instanceof để kiểm tra NullPointerException (nếu obj null sẽ trả về false)
+        // và ClassCastException (nếu obj không phải là Media thì cũng trả về false)
+        if (!(obj instanceof Media)) {
             return false;
         }
 
-        Media other = (Media) obj;
-        return this.title != null && this.title.equals(other.getTitle());
+        // Ép kiểu an toàn sau khi đã kiểm tra bằng instanceof
+        Media otherMedia = (Media) obj;
+
+        // Kiểm tra tiếp trường hợp Title bị null để tránh NullPointerException khi gọi hàm equals của String
+        if (this.getTitle() != null && otherMedia.getTitle() != null) {
+            return this.getTitle().equals(otherMedia.getTitle());
+        }
+
+        return false;
     }
 }
