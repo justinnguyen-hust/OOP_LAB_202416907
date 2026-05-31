@@ -69,4 +69,8 @@ public class Store {
         }
         return null; // Không tìm thấy
     }
+
+    public ArrayList<Media> getItemsInStore() {
+        return this.itemsInStore; // Thay 'itemsInStore' bằng tên biến danh sách thực tế trong lớp Store của bạn
+    }
 }
